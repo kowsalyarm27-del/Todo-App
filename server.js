@@ -8,6 +8,7 @@ app.get('/', (req, res) => {
   res.send(`<h1>Backend is Running!</h1><p>Secret Status: ${secret === "Secret Not Found" ? "❌ Missing" : "✅ Loaded"}</p>`);
 });
 
-app.listen(3000, () => {
-  console.log('Server running on port 3000');
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
+  console.log(`Verified Secret from Dashboard: ${process.env.DB_PASSWORD}`); // Intha line-ah add pannunga
 });
