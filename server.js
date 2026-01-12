@@ -1,14 +1,15 @@
 const express = require('express');
 const app = express();
+const port = 3000; // Intha line kandippa irukkanum!
 
-// Secret Management: Dashboard-la irundhu DB_PASSWORD-ah edukkum
-const secret = process.env.DB_PASSWORD || "Secret Not Found";
+// Secret Management: Environment variable-ah inga fetch panrom
+const dbPassword = process.env.DB_PASSWORD || "Secret Not Found";
 
 app.get('/', (req, res) => {
-  res.send(`<h1>Backend is Running!</h1><p>Secret Status: ${secret === "Secret Not Found" ? "❌ Missing" : "✅ Loaded"}</p>`);
+  res.send(`<h1>Secret Status: ${dbPassword === "Secret Not Found" ? "❌" : "✅"}</h1><p>Value: ${dbPassword}</p>`);
 });
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
-  console.log(`Verified Secret from Dashboard: ${process.env.DB_PASSWORD}`); // Intha line-ah add pannunga
+  console.log(`Secret from Dashboard: ${dbPassword}`); // Ippo idhu log-la varum!
 });
