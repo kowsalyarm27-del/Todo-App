@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const port = 3000; 
 // Secret Management: Environment variable
+const dbHost = process.env.DB_HOST;
 const dbPassword = process.env.DB_PASSWORD || "Secret Not Found";
 
 app.get('/', (req, res) => {
@@ -10,5 +11,6 @@ app.get('/', (req, res) => {
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
+  console.log(`Connecting to database at ${dbHost}...`);
   console.log(`Secret from Dashboard: ${dbPassword}`); 
 });
