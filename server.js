@@ -1,8 +1,7 @@
 const express = require('express');
 const app = express();
-const port = 3000; // Intha line kandippa irukkanum!
-
-// Secret Management: Environment variable-ah inga fetch panrom
+const port = 3000; 
+// Secret Management: Environment variable
 const dbPassword = process.env.DB_PASSWORD || "Secret Not Found";
 
 app.get('/', (req, res) => {
@@ -11,5 +10,5 @@ app.get('/', (req, res) => {
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
-  console.log(`Secret from Dashboard: ${dbPassword}`); // Ippo idhu log-la varum!
+  console.log(`Secret from Dashboard: ${dbPassword}`); 
 });
