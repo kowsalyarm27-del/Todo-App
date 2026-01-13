@@ -3,25 +3,23 @@ const { Pool } = require('pg');
 const app = express();
 const port = 3000;
 
-// This pulls the password from your Dokploy Environment settings
-const dbPassword = process.env.DB_PASSWORD || "Password Not Found";
-const dbUrl = process.env.DATABASE_URL;
-
 const pool = new Pool({
-  connectionString: dbUrl,
+  connectionString: process.env.DATABASE_URL,
 });
 
-app.get('/', async (req, res) => {
-  try {
-    const result = await pool.query('SELECT NOW()');
-    res.send(`<h1>Connected!</h1><p>DB Time: ${result.rows[0].now}</p>`);
-  } catch (err) {
-    res.status(500).send(`<h1>Connection Error</h1><p>${err.message}</p>`);
+// TEST THE CONNECTION IMMEDIATELY
+pool.connect((err, client, release) => {
+  if (err) {
+    return console.error('❌ DATABASE CONNECTION ERROR:', err.stack);
   }
+  console.log('✅ SUCCESS: Backend is connected to the Database!');
+  release();
+});
+
+app.get('/', (req, res) => {
+  res.send('Server is running and checking DB connection...');
 });
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
-  // THIS LINE WILL SHOW YOUR PASSWORD IN THE LOGS AGAIN
-  console.log(`Your Secret Key (DB_PASSWORD) is: ${dbPassword}`);
 });
