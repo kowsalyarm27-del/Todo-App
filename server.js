@@ -13,7 +13,7 @@ function getDecryptedUrl() {
 
         if (!password || !ivHex || !encryptedText) return null;
 
-        // CHANGE: Use a fixed 32-byte key from your password
+        // This creates a stable 32-byte key from your password
         const key = crypto.createHash('sha256').update(password).digest(); 
         const iv = Buffer.from(ivHex, 'hex');
 
