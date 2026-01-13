@@ -3,7 +3,6 @@ const { Pool } = require('pg');
 const crypto = require('crypto');
 const app = express();
 const port = 3000;
-
 // 1. THE DECRYPTION FUNCTION
 function getDecryptedUrl() {
     try {
@@ -22,7 +21,6 @@ function getDecryptedUrl() {
         return null;
     }
 }
-
 // 2. GET THE REAL URL
 const connectionString = getDecryptedUrl();
 
