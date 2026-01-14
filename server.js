@@ -17,11 +17,3 @@ pool.connect((err, client, release) => {
   console.log('✅ SUCCESS: Backend is connected to the Database!');
   release();
 });
-
-app.get('/', (req, res) => {
-  res.send('Server is running and checking DB connection...');
-});
-
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
-});
