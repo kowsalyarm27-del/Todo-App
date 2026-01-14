@@ -1,5 +1,7 @@
-const express = require('express');
-const { Pool } = require('pg');
+import express from 'express';
+import pkg from 'pg';
+const { Pool } = pkg;
+
 const app = express();
 const port = 3000;
 
